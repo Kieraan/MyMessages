@@ -1,0 +1,46 @@
+#
+# MyMessages 0.1
+# By Kieraan
+#
+
+# Custom Server Settings.
+# joinmessage = Custom message shown when a player joins. (Usable variables: <player>)
+# quitmessage = Custom message shown when a player leaves. (Usable variables: <player>)
+# motd = The server list MOTD shown before players join your server.
+
+server: 
+  joinmessage: "&e<player> joined the game."
+  quitmessage: "&e<player> left the game."
+  motd: "&bA Minecraft Server"
+  
+  
+# Server-wide Broadcasts.
+# staff_tag = Tag shown to users who have permission to broadcast. (Usable variables: <player>)
+# regular_tag = Tag shown to users who do not have permission to broadcast. (Usable variables: <player>)
+
+broadcast:
+  staff_tag: "&6[<player>]"
+  regular_tag: "&6[STAFF]"
+  
+  
+# Rules.
+# enable_rules = True if you want to use this plugin for rules.
+# rules: Each new line is a new rule.
+
+enable_rules: true
+rules: |
+    &6This is rule 1
+    &6This is rule 2
+    &6This is rule 3
+    
+
+# Auto Messages.
+# enable_auto_messages = True if you want to cycle through the messages once every 10 minutes
+# messages = Each new line is a new auto message.
+
+enable_auto_messages: true
+messages: |
+    &bThis is an automatic message
+    &eThis is another automatic message
+    &aThis is a third automatic message
+    

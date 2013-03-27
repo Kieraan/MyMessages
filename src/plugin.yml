@@ -1,0 +1,27 @@
+name: MyMessages
+main: uk.co.kieraan.mymessages.MyMessages
+version: 0.1
+author: Kieraan
+description: Server-wide broadcasting, join/quit messages and much more.
+softdepend: [VanishNoPacket]
+commands:
+  joinmessage:
+    description: Sets the custom join message.
+    usage: /<command> <message>
+    aliases: ['jm']
+  quitmessage:
+    description: Sets the custom quit message.
+    usage: /<command> <message>
+    aliases: ['qm']
+  setmotd:
+    description: Sets the server MOTD.
+    usage: /<command> <motd>
+    aliases: ['sm']
+  staffbroadcast:
+    description: Sets the custom join message.
+    usage: /<command> <message>
+    aliases: ['sb']
+  rules:
+    description: Displays the server rules.
+    usage: /<command>
+    aliases: ['r']
