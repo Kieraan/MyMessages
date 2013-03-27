@@ -22,10 +22,11 @@ public class RulesCommand extends MasterCommand {
         
         if (!isPlayer) {
             sender.sendMessage(ChatColor.RED + "Run this command from ingame.");
+            return;
         }
         
         for (String rule : this.plugin.rules) {
-            player.sendMessage(ruleNumber + ") " + this.plugin.formatColors(rule));
+            player.sendMessage(ruleNumber + ") " + this.plugin.format(rule));
             ruleNumber++;
         }
     }

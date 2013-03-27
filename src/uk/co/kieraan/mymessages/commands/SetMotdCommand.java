@@ -22,9 +22,10 @@ public class SetMotdCommand extends MasterCommand {
 
         if (!isPlayer) {
             sender.sendMessage(ChatColor.RED + "Run this command from ingame.");
+            return;
         }
 
-        if (!player.hasPermission("mymessages.set.motd")) {
+        if (!player.hasPermission("mymessages.setmotd")) {
             player.sendMessage(ChatColor.RED + "Access denied.");
             return;
         }
@@ -42,7 +43,7 @@ public class SetMotdCommand extends MasterCommand {
                 plr.sendMessage(ChatColor.GOLD + player.getDisplayName() + ChatColor.GOLD + " changed the server MOTD.");
             }
         }
-        player.sendMessage(ChatColor.GOLD + "MOTD set to: \"" + ChatColor.RESET + this.plugin.formatColors(newMotd) + ChatColor.GOLD + "\"");
+        player.sendMessage(ChatColor.GOLD + "MOTD set to: \"" + ChatColor.RESET + this.plugin.format(newMotd) + ChatColor.GOLD + "\"");
     }
 
 }

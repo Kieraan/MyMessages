@@ -12,6 +12,17 @@ server:
   joinmessage: "&e<player> joined the game."
   quitmessage: "&e<player> left the game."
   motd: "&bA Minecraft Server"
+    
+    
+# Custom Logging.
+# join: quit: command: chat: = True if you wish to log that action.
+# Logs to three seperate files in plugins/MyMessages/ depending on the players permissions.
+
+log:
+  join: true
+  quit: true
+  command: true
+  chat: true
   
   
 # Server-wide Broadcasts.
@@ -33,7 +44,7 @@ rules: |
     &6This is rule 2
     &6This is rule 3
     
-
+    
 # Auto Messages.
 # enable_auto_messages = True if you want to cycle through the messages once every 10 minutes
 # messages = Each new line is a new auto message.
@@ -44,3 +55,13 @@ messages: |
     &eThis is another automatic message
     &aThis is a third automatic message
     
+    
+# Swear Filter.
+# enable_swear_filter = True if you wish to censor the words you set below.
+# bad_words = The words to be censored if said.
+
+enable_swear_filter: false
+bad_words: |
+    BadWord1
+    BadWord2
+    BadWord3

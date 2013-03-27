@@ -24,9 +24,10 @@ public class StaffBroadcastCommand extends MasterCommand {
 
         if (!isPlayer) {
             sender.sendMessage(ChatColor.RED + "Run this command from ingame.");
+            return;
         }
 
-        if (!player.hasPermission("mymessages.broadcast.staff")) {
+        if (!player.hasPermission("mymessages.staffbroadcast")) {
             player.sendMessage(ChatColor.RED + "Access denied.");
             return;
         }
@@ -37,15 +38,13 @@ public class StaffBroadcastCommand extends MasterCommand {
         }
 
         broadcastMessage += this.plugin.combineSplit(0, args, " ");
-        broadcastMessage = this.plugin.formatColors(broadcastMessage);
+        broadcastMessage = this.plugin.format(broadcastMessage);
 
         broadcastStaffTag += this.plugin.getConfig().getString("broadcast.staff_tag");
-        broadcastStaffTag = this.plugin.formatColors(broadcastStaffTag);
-        broadcastStaffTag = broadcastStaffTag.replace("<player>", player.getDisplayName());
+        broadcastStaffTag = this.plugin.format(broadcastStaffTag, player.getDisplayName());
 
         broadcastRegularTag += this.plugin.getConfig().getString("broadcast.regular_tag");
-        broadcastRegularTag = this.plugin.formatColors(broadcastRegularTag);
-        broadcastRegularTag = broadcastRegularTag.replace("<player>", player.getDisplayName());
+        broadcastRegularTag = this.plugin.format(broadcastRegularTag, player.getDisplayName());
 
         if (broadcastMessage != null && broadcastStaffTag != null && broadcastRegularTag != null) {
             for (Player plr : this.plugin.getServer().getOnlinePlayers()) {

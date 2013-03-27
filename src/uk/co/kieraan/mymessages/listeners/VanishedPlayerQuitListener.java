@@ -2,6 +2,7 @@ package uk.co.kieraan.mymessages.listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
@@ -17,16 +18,15 @@ public class VanishedPlayerQuitListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerQuit(PlayerQuitEvent event) throws VanishNotLoadedException {
         Player player = event.getPlayer();
 
         String newQuitMessage = "";
         newQuitMessage += this.plugin.getConfig().getString("server.quitmessage");
-        newQuitMessage = newQuitMessage.replace("<player>", player.getDisplayName());
-        newQuitMessage = this.plugin.formatColors(newQuitMessage);
+        newQuitMessage = this.plugin.format(newQuitMessage, player.getDisplayName());
 
-        if (newQuitMessage.equals("") || newQuitMessage.equals(null)) {
+        if (newQuitMessage == null) {
             this.plugin.getLogger().severe("No custom quit message found, using default instead.");
             return;
         }

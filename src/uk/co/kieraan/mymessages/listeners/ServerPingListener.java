@@ -18,7 +18,7 @@ public class ServerPingListener implements Listener {
     public void onServerListPing(ServerListPingEvent event) {
         String newMotd = "";
         newMotd += this.plugin.getConfig().getString("server.motd");
-        newMotd = this.plugin.formatColors(newMotd);
+        newMotd = this.plugin.format(newMotd);
         event.setMotd(newMotd);
     }
 

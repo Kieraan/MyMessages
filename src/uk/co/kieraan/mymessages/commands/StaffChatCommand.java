@@ -7,25 +7,25 @@ import org.bukkit.entity.Player;
 import uk.co.kieraan.mymessages.MasterCommand;
 import uk.co.kieraan.mymessages.MyMessages;
 
-public class JoinMessageCommand extends MasterCommand {
+public class StaffChatCommand extends MasterCommand {
 
     MyMessages plugin;
 
-    public JoinMessageCommand(MyMessages plugin) {
+    public StaffChatCommand(MyMessages plugin) {
         super(plugin);
         this.plugin = plugin;
     }
 
     @Override
     public void exec(CommandSender sender, String commandName, String[] args, Player player, boolean isPlayer) {
-        String newJoinMessage = "";
+        String staffChatMessage = "";
 
         if (!isPlayer) {
             sender.sendMessage(ChatColor.RED + "Run this command from ingame.");
             return;
         }
 
-        if (!player.hasPermission("mymessages.joinmessage")) {
+        if (!player.hasPermission("mymessages.staffchat")) {
             player.sendMessage(ChatColor.RED + "Access denied.");
             return;
         }
@@ -35,15 +35,19 @@ public class JoinMessageCommand extends MasterCommand {
             return;
         }
 
-        newJoinMessage += this.plugin.combineSplit(0, args, " ");
-        this.plugin.getConfig().set("server.joinmessage", newJoinMessage);
-        this.plugin.saveConfig();
-        for (Player plr : this.plugin.getServer().getOnlinePlayers()) {
-            if (plr.hasPermission("mymessages.joinmessage") && !plr.equals(player)) {
-                plr.sendMessage(ChatColor.GOLD + player.getDisplayName() + ChatColor.GOLD + " changed the server join message.");
+        staffChatMessage += this.plugin.combineSplit(0, args, " ");
+        staffChatMessage = this.plugin.format(staffChatMessage);
+
+        if (staffChatMessage != null) {
+            for (Player plr : this.plugin.getServer().getOnlinePlayers()) {
+                if (plr.hasPermission("mymessages.staffchat")) {
+                    plr.sendMessage(ChatColor.GOLD + "[Staff Chat] " + ChatColor.RESET + player.getDisplayName() + ": " + staffChatMessage);
+                }
             }
+        } else {
+            player.sendMessage(ChatColor.RED + "Error: Could not send message.");
         }
-        player.sendMessage(ChatColor.GOLD + "Join message set to: \"" + ChatColor.RESET + this.plugin.format(newJoinMessage) + ChatColor.GOLD + "\"");
+
     }
 
 }

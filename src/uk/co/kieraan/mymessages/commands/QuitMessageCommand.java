@@ -22,9 +22,10 @@ public class QuitMessageCommand extends MasterCommand {
         
         if (!isPlayer) {
             sender.sendMessage(ChatColor.RED + "Run this command from ingame.");
+            return;
         }
 
-        if (!player.hasPermission("mymessages.set.quitmessage")) {
+        if (!player.hasPermission("mymessages.quitmessage")) {
             player.sendMessage(ChatColor.RED + "Access denied.");
             return;
         }
@@ -38,11 +39,11 @@ public class QuitMessageCommand extends MasterCommand {
         this.plugin.getConfig().set("server.quitmessage", newQuitMessage);
         this.plugin.saveConfig();
         for (Player plr : this.plugin.getServer().getOnlinePlayers()) {
-            if (plr.hasPermission("mymessages.set.quitmessage") && !plr.equals(player)) {
+            if (plr.hasPermission("mymessages.quitmessage") && !plr.equals(player)) {
                 plr.sendMessage(ChatColor.GOLD + player.getDisplayName() + ChatColor.GOLD + " changed the server quit message.");
             }
         }
-        player.sendMessage(ChatColor.GOLD + "Quit message set to: \"" + ChatColor.RESET + this.plugin.formatColors(newQuitMessage) + ChatColor.GOLD + "\"");
+        player.sendMessage(ChatColor.GOLD + "Quit message set to: \"" + ChatColor.RESET + this.plugin.format(newQuitMessage) + ChatColor.GOLD + "\"");
     }
 
 }

@@ -2,6 +2,7 @@ package uk.co.kieraan.mymessages.listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
@@ -17,16 +18,15 @@ public class VanishedPlayerJoinListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerJoin(PlayerJoinEvent event) throws VanishNotLoadedException {
         Player player = event.getPlayer();
 
         String newJoinMessage = "";
         newJoinMessage += this.plugin.getConfig().getString("server.joinmessage");
-        newJoinMessage = newJoinMessage.replace("<player>", player.getDisplayName());
-        newJoinMessage = this.plugin.formatColors(newJoinMessage);
+        newJoinMessage = this.plugin.format(newJoinMessage, player.getDisplayName());
 
-        if (newJoinMessage.equals("") || newJoinMessage.equals(null)) {
+        if (newJoinMessage == null) {
             this.plugin.getLogger().severe("No custom join message found, using default instead.");
             return;
         }

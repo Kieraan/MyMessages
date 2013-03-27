@@ -25,3 +25,7 @@ commands:
     description: Displays the server rules.
     usage: /<command>
     aliases: ['r']
+  staffchat:
+    description: Staffs only messaging.
+    usage: /<command>
+    aliases: ['sc']
